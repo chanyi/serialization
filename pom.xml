@@ -14,15 +14,11 @@
   </parent>
 
   <dependencies>
-<!--    <dependency>-->
-<!--      <groupId>com.esotericsoftware</groupId>-->
-<!--      <artifactId>kryo</artifactId>-->
-<!--      <version>5.0.0-RC4</version>-->
-<!--    </dependency>-->
+
     <dependency>
       <groupId>com.esotericsoftware</groupId>
       <artifactId>kryo</artifactId>
-      <version>4.0.0</version>
+      <version>5.0.0-RC4</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/de.javakaffee/kryo-serializers -->
     <dependency>
@@ -45,6 +41,12 @@
       <artifactId>lombok</artifactId>
       <version>1.18.10</version>
       <scope>provided</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.caucho/hessian -->
+    <dependency>
+      <groupId>com.caucho</groupId>
+      <artifactId>hessian</artifactId>
+      <version>4.0.38</version>
     </dependency>
 
 
