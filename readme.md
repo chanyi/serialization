@@ -300,3 +300,5 @@ kryo.setInstantiatorStrategy(new StdInstantiatorStrategy());
 ```
 #### （2）、具体实现
 参照代码
+### 2.2、踩坑
+（1）、使用hessian序列化的过程中一定要让被序列化的类实现serializable（java.io）接口，否则无法进行序列化
