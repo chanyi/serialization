@@ -1,10 +1,10 @@
 # 多个序列化方案的封装
 
-## 1、kryo
+## 1、kryo序列化
 
 kray序列化使用及采坑
 
-### 1、kryo序列化使用过程
+### 1.1、kryo序列化使用过程
 
 #### （1）、导入依赖
 ```xml
@@ -260,7 +260,7 @@ public class KryoController {
 
 ```
 
-### 2、采坑过程
+### 1.2、采坑过程
 
 （1）、com.esotericsoftware.kryo.KryoException: java.lang.NullPointerException	Serialization trace:
 
@@ -287,3 +287,16 @@ kryo.setInstantiatorStrategy(new StdInstantiatorStrategy());
 （3）、其他问题可以直接看官网文档
 
 （<https://github.com/EsotericSoftware/kryo/blob/master/README.md>）
+
+## 2、hessian序列化
+### 2.1 hession序列化实现
+#### （1）、导入pom依赖
+```xml
+<dependency>
+      <groupId>com.caucho</groupId>
+      <artifactId>hessian</artifactId>
+      <version>4.0.38</version>
+</dependency>
+```
+#### （2）、具体实现
+参照代码
