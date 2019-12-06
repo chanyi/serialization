@@ -5,7 +5,6 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.kryo.serializers.BeanSerializer;
 import com.simba.service.Serializer;
-import java.io.OutputStream;
 import org.objenesis.strategy.StdInstantiatorStrategy;
 import org.springframework.stereotype.Component;
 
@@ -55,19 +54,23 @@ public class KryoSerializer implements Serializer {
   }
 
   @Override
-  public void serializer(Object object, byte[] bytes) {
+  public byte[] serializer(Object object) {
+    byte[] bytes = new byte[200];
     Kryo kryo = kryoThreadLocal.get();
     Output output =getOutPut(bytes);
     kryo.writeObjectOrNull(output,object,object.getClass());
     output.flush();
+    return bytes;
   }
 
   @Override
-  public void serializer(Object object, byte[] bytes, int offset, int count) {
+  public byte[] serializer(Object object, int offset, int count) {
+    byte[] bytes = new byte[200];
     Kryo kryo = kryoThreadLocal.get();
     Output output =getOutPut(bytes,offset,count);
     kryo.writeObjectOrNull(output,object,object.getClass());
     output.flush();
+    return bytes;
   }
 
   @Override

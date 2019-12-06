@@ -3,6 +3,7 @@ package com.simba.controller;
 
 import com.simba.model.SubTestSerialization;
 import com.simba.model.TestSerialization;
+import com.simba.service.impl.HessianSerializer;
 import com.simba.service.impl.KryoSerializer;
 import java.util.Arrays;
 import org.junit.Test;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/kryo")
 /**
- * kryo序列化类，是有
+ * hessian序列化类
  */
-public class KryoController {
+public class HessianController {
 
   @RequestMapping("/test")
   public String test(){
@@ -22,12 +23,22 @@ public class KryoController {
   }
 
   @Test
-  public void kayoSerializer(){
+  public void hessianSerializer(){
     byte[] bytes =new byte[200];
-    String[] strings = {"s","s1"};
     System.out.println(Arrays.toString(bytes));
-    KryoSerializer kryoSerializer = new KryoSerializer();
-    kryoSerializer.setaClass(TestSerialization.class);
+    HessianSerializer hessianSerializer = new HessianSerializer();
+    TestSerialization testSerialization = initTestSerialization();
+    bytes = hessianSerializer.serializer(testSerialization);
+    System.out.println(testSerialization.toString());
+    System.out.println(Arrays.toString(bytes));
+    System.out.println("=====================================");
+    TestSerialization testSerialization1 = hessianSerializer.deserializer(bytes);
+    System.out.println(testSerialization1.toString());
+    System.out.println(Arrays.toString(bytes));
+  }
+
+  private TestSerialization initTestSerialization(){
+    String[] strings = {"s","s1"};
     TestSerialization testSerialization = new TestSerialization();
     testSerialization.setText("aaaaasdwe");
     testSerialization.setName("f");
@@ -37,14 +48,7 @@ public class KryoController {
     SubTestSerialization subTestSerialization = new SubTestSerialization();
     subTestSerialization.setName("test");
     testSerialization.setSubTestSerialization(subTestSerialization);
-
-    bytes = kryoSerializer.serializer(testSerialization);
-    System.out.println(testSerialization.toString());
-    System.out.println(Arrays.toString(bytes));
-    System.out.println("=====================================");
-    TestSerialization testSerialization1 = kryoSerializer.deserializer(bytes);
-    System.out.println(testSerialization1.toString());
-    System.out.println(Arrays.toString(bytes));
+    return testSerialization;
   }
 
 }

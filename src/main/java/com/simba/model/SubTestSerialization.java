@@ -1,5 +1,6 @@
 package com.simba.model;
 
+import java.io.Serializable;
 import java.util.List;
 import lombok.Data;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class SubTestSerialization {
+public class SubTestSerialization  implements Serializable {
   private String text;
   private String name;
   private int id ;
